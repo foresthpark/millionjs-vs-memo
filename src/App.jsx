@@ -28,9 +28,10 @@ import {
 import { startTransition, useState } from "react";
 import GithubCorner from "react-github-corner";
 import TimesTable from "./times-table";
+import TimesTableMemo from "./times-table-memo";
 
 function App() {
-  const [nodes, setNodes] = useState(1000);
+  const [nodes, setNodes] = useState(100);
   const handleChange = (newNodes) => {
     if (newNodes === nodes) return;
     debounce(() => {
@@ -151,8 +152,7 @@ function App() {
         </NumberInput>
         <Tabs isLazy={true} variant="soft-rounded" colorScheme="purple" mt={3}>
           <TabList>
-            <Tab w="full">React</Tab>
-            <Tab w="full">React Fiber</Tab>
+            <Tab w="full">React Raw - No memo</Tab>
             <Tab w="full">React Memo</Tab>
             <Tab w="full">⚡ Million</Tab>
           </TabList>
@@ -161,10 +161,7 @@ function App() {
               <TimesTable nodes={nodes} mode="react" />
             </TabPanel>
             <TabPanel>
-              <TimesTable nodes={nodes} mode="react-fiber" />
-            </TabPanel>
-            <TabPanel>
-              <div>hello</div>
+              <TimesTableMemo nodes={nodes} />
             </TabPanel>
             <TabPanel>
               <TimesTable nodes={nodes} mode="million" />
